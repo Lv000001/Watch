@@ -99,7 +99,30 @@ namespace Watch.Controls
                         {
                             if (((HWTextareaWithOneWildCard)watchElement.HWElement).Font_type.StartsWith(ConstData.Fonts[i]))
                             {
+                                cmbFont.SelectionChanged -= CmbFont_SelectionChanged;
                                 cmbFont.SelectedIndex = i;
+                                string font = ConstData.Fonts[i];
+                                List<int> source = null;
+                                if (Resolution == 0 && ConstData.FontSize454.ContainsKey(font))
+                                {
+                                    source = ConstData.FontSize454[font];
+                                }
+                                if (Resolution == 1 && ConstData.FontSize390.ContainsKey(font))
+                                {
+                                    source = ConstData.FontSize390[font];
+                                }
+                                cmbFontSize.SelectionChanged -= CmbFontSize_SelectionChanged;
+                                cmbFontSize.ItemsSource = source;
+                                for (int j = 0; j < source.Count; j++)
+                                {
+                                    if (((HWTextareaWithOneWildCard)watchElement.HWElement).Font_type.EndsWith(source[j].ToString()))
+                                    {
+                                        cmbFontSize.SelectedIndex = j;
+                                        break;
+                                    }
+                                }
+                                cmbFontSize.SelectionChanged += CmbFontSize_SelectionChanged;
+                                cmbFont.SelectionChanged += CmbFont_SelectionChanged;
                                 break;
                             }
                         }
@@ -128,9 +151,9 @@ namespace Watch.Controls
 
         private void CmbFont_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
+            if (cmbFont.SelectedValue!=null)
             {
-                string font = e.AddedItems[0].ToString();
+                string font = cmbFont.SelectedValue.ToString();
                 if (Resolution == 0 && ConstData.FontSize454.ContainsKey(font))
                 {
                     cmbFontSize.ItemsSource = ConstData.FontSize454[font];
@@ -146,13 +169,16 @@ namespace Watch.Controls
 
         private void CmbFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string font = cmbFont.Text;
-            if (e.AddedItems.Count > 0)
+            if (cmbFont.SelectedValue == null || cmbFontSize.SelectedValue == null)
             {
-                string fontSize = e.AddedItems[0].ToString();
-                ((HWTextareaWithOneWildCard)WatchElement.HWElement).Font_type = font + "_" + fontSize;
-                RefreshControl();
+                return;
             }
+            string font = cmbFont.SelectedValue.ToString();
+
+            string fontSize = cmbFontSize.SelectedValue.ToString();
+            ((HWTextareaWithOneWildCard)WatchElement.HWElement).Font_type = font + "_" + fontSize;
+            RefreshControl();
+
         }
 
         private void CmbAlignment_SelectionChanged(object sender, SelectionChangedEventArgs e)
