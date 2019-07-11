@@ -242,6 +242,8 @@ namespace Watch
         private ContentControl AddTextareaWithOneWildCard(HWTextareaWithOneWildCard textareaWithOneWildCard)
         {
             TextBlock text = new TextBlock();
+            text.VerticalAlignment = VerticalAlignment.Center;
+            text.HorizontalAlignment = HorizontalAlignment.Stretch;
             int value = ConstData.Datas[textareaWithOneWildCard.Data_type];
             text.Text = value.ToString();
             text.Foreground = new SolidColorBrush(Color.FromArgb(textareaWithOneWildCard.Alpha,
@@ -265,6 +267,9 @@ namespace Watch
         private ContentControl AddTextareaWithTwoWildCarde(HWTextareaWithTwoWildCard textareaWithTwoWildCard)
         {
             TextBlock text = new TextBlock();
+            text.VerticalAlignment = VerticalAlignment.Center;
+            text.HorizontalAlignment = HorizontalAlignment.Stretch;
+
             int value = ConstData.Datas[textareaWithTwoWildCard.Data_type];
             string connect = "";
             switch (textareaWithTwoWildCard.Data_connector_type)
