@@ -31,7 +31,7 @@ namespace Watch.Controls
                 watchElement.HWElement = new HWTextureMapper();
             }
 
-            cmbDataType.ItemsSource = ConstData.DataTypeDescriptions;
+            cmbDataType.ItemsSource = ConstData.RatioDataTypeDescriptions;
             cmbDataType.SelectedValuePath = "Value";
             cmbDataType.DisplayMemberPath = "Key";
             cmbDataType.SelectedIndex = 0;
@@ -94,7 +94,7 @@ namespace Watch.Controls
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
             if (DialogResult.OK == ofd.ShowDialog())
             {
-                ((HWCircle)WatchElement.HWElement).Res_name = ofd.FileName;
+                ((HWTextureMapper)WatchElement.HWElement).Res_name = ofd.FileName;
                 path.Text = ofd.FileName;
                 if (WatchElement.DesignerControl != null)
                 {

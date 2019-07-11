@@ -31,7 +31,7 @@ namespace Watch
             InitializeComponent();
         }
 
-        public AddElementWindow(int resolution):this()
+        public AddElementWindow(int resolution) : this()
         {
             Resolution = resolution;
         }
@@ -70,19 +70,58 @@ namespace Watch
                     case 0:
                         HWElement = ((BoxControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
                     case 1:
-                        HWElement = ((CircleControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
+                        HWElement = ((CircleControl)gridCtrl.Children[0]).WatchElement.HWElement;
+                        if (string.IsNullOrWhiteSpace(((HWCircle)HWElement).Res_name))
+                        {
+                            MessageBox.Show("图片资源不能为空!");
+                            return;
+                        }
+                        break;
                     case 2:
-                        HWElement = ((ImageControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
+                        HWElement = ((ImageControl)gridCtrl.Children[0]).WatchElement.HWElement;
+                        if (string.IsNullOrWhiteSpace(((HWImage)HWElement).Res_name))
+                        {
+                            MessageBox.Show("图片资源不能为空!");
+                            return;
+                        }
+                        break;
+
                     case 3:
-                        HWElement = ((LineControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
+                        HWElement = ((LineControl)gridCtrl.Children[0]).WatchElement.HWElement;
+                        if (string.IsNullOrWhiteSpace(((HWLine)HWElement).Res_name))
+                        {
+                            MessageBox.Show("图片资源不能为空!");
+                            return;
+                        }
+                        break;
                     case 4:
-                        HWElement = ((SelecteImageControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
+                        HWElement = ((SelecteImageControl)gridCtrl.Children[0]).WatchElement.HWElement;
+                        int count = 0;
+                        for (int i = 0; i < ((HWSelectImage)HWElement).Res_names.Count; i++)
+                        {
+                            if (string.IsNullOrWhiteSpace(((HWSelectImage)HWElement).Res_names[i]))
+                            {
+                                count++;
+                            }
+                        }
+                        if (count == 0)
+                        {
+                            MessageBox.Show("至少需要一个图片资源");
+                            return;
+                        }
+                        break;
                     case 5:
                         HWElement = ((TextareaWithOneWildCardControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
                     case 6:
                         HWElement = ((TextareaWithTwoWildCardControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
                     case 7:
-                        HWElement = ((TextureMapperControl)gridCtrl.Children[0]).WatchElement.HWElement; break;
+                        HWElement = ((TextureMapperControl)gridCtrl.Children[0]).WatchElement.HWElement;
+                        if (string.IsNullOrWhiteSpace(((HWTextureMapper)HWElement).Res_name))
+                        {
+                            MessageBox.Show("图片资源不能为空!");
+                            return;
+                        }
+                        break;
                 }
 
                 DialogResult = true;
