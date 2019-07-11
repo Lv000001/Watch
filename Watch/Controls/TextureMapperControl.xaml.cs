@@ -56,7 +56,7 @@ namespace Watch.Controls
                     {
                         path.Text = ((HWTextureMapper)watchElement.HWElement).Res_name;
                         int index = 0;
-                        foreach (var item in ConstData.DataTypeDescriptions.Values)
+                        foreach (var item in ConstData.RatioDataTypeDescriptions.Values)
                         {
                             if (item == ((HWTextureMapper)watchElement.HWElement).Data_type)
                             {
