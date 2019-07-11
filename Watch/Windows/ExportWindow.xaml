@@ -1,0 +1,48 @@
+﻿<Window x:Class="Watch.Windows.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Watch.Windows"
+        mc:Ignorable="d"
+        Title="ExportWindow" Height="300" Width="350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="95*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="表盘英文名" Margin="5"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="表盘中文名" Margin="5"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="表盘开发者名称" Margin="5"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="表盘设计师名称" Margin="5"/>
+        <StackPanel Grid.Column="0" Grid.Row="4" Margin="5" >
+            <TextBlock Text="版本号" />
+            <TextBlock Text="主题版本号规则：x.y.z" FontSize="9" Foreground="#FFFF0505" />
+            <TextBlock Text="x：运动手表454*454规格表盘取值为2" FontSize="9" Foreground="#FFFF0505" />
+            <TextBlock Text="x：运动手表390*390规格表盘取值为3" FontSize="9" Foreground="#FFFF0505" />
+            <TextBlock Text="y：当前版本固定为1" FontSize="9" Foreground="#FFFF0505" />
+            <TextBlock Text="z：由表盘作者自定义" FontSize="9" Foreground="#FFFF0505" />            
+        </StackPanel>
+      
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="表盘简介" Margin="5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Title}" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title_CN}" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Author}" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Designer}" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Version}" Margin="5" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Briefinfo}" Margin="5"/>
+
+        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Width="40" Height="30" VerticalAlignment="Bottom" Margin="0 0 80 10" Content="确定" x:Name="btnOk" Click="BtnOk_Click"/>
+        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Width="40" Height="30" VerticalAlignment="Bottom" Margin="0 0 20 10" Content="取消" x:Name="btnCancel" Click="BtnCancel_Click"/>
+    </Grid>
+</Window>

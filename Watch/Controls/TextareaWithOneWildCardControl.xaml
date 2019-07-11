@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Watch.Controls.TextareaWithOneWildCardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Watch.Controls"
+             xmlns:class="clr-namespace:Watch"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <class:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5" Text="左上角X坐标"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="5" Text="左上角Y坐标"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="5" Text="宽度"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5" Text="高度"/>
+        <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Margin="5" Text="订阅的数据"/>
+        <TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Margin="5" Text="文字颜色"/>
+        <TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Margin="5" Text="透明度"/>
+        <TextBlock Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Margin="5" Text="字体"/>
+        <TextBlock Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Margin="5" Text="字体大小"/>
+        <TextBlock Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" Margin="5" Text="对齐方式"/>
+
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="5" Text="{Binding X}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="5" Text="{Binding Y}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="5" Text="{Binding Width}"/>
+        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="5" Text="{Binding Height}"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="5"  x:Name="cmbDataType" SelectionChanged="CmbDataType_SelectionChanged" />
+        <Grid Grid.Column="1" Grid.Row="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="5 5 20 5" x:Name="gridColor" HorizontalAlignment="Right" Width="50"   Background="{Binding HWElement,Converter={StaticResource ColorToBrushConverter}}"/>
+            <Button Grid.Column="1" Content="选择颜色"  Margin="5" Click="Button_Click"/>
+        </Grid>
+        <Slider Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="5" Value="{Binding HWElement.Alpha}" Maximum="255" ValueChanged="Slider_ValueChanged"/>
+        <ComboBox x:Name="cmbFont" SelectionChanged="CmbFont_SelectionChanged" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Margin="5" SelectedIndex="0"/>
+        <ComboBox x:Name="cmbFontSize" SelectionChanged="CmbFontSize_SelectionChanged"  Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Margin="5" SelectedIndex="0"/>
+        <ComboBox x:Name="cmbAlignment" SelectionChanged="CmbAlignment_SelectionChanged" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Margin="5" SelectedIndex="0"/>
+    </Grid>
+</UserControl>

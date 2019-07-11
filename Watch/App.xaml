@@ -1,0 +1,27 @@
+﻿<Application x:Class="Watch.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Watch"
+             StartupUri="Windows/MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <FontFamily x:Key="F_DINCONDENSED_BOLD">/Watch;component/Font/#DINCondensedATT</FontFamily>
+            <FontFamily x:Key="F_DINNEXTFORHUAWEI_BOLD">/Watch;component/Font/#DIN Next For Huawei</FontFamily>
+            <FontFamily x:Key="F_DIN_BLACKITALIC">/Watch;component/Font/#DIN-BlackItalic</FontFamily>
+            <FontFamily x:Key="F_DIN_BLACKALTERNATE">/Watch;component/Font/#DIN BlackAlternate</FontFamily>
+            <FontFamily x:Key="F_DINNEXTLTPRO_MEDIUM">/Watch;component/Font/#DIN Next LT Pro Medium</FontFamily>
+            <FontFamily x:Key="F_DINNEXTLTPRO_REGULAR">/Watch;component/Font/#DIN Next LT Pro</FontFamily>
+            <FontFamily x:Key="F_EUROSTILELT_DEMI">/Watch;component/Font/#Eurostile</FontFamily>
+            <FontFamily x:Key="F_EUROSTILELT_BOLD_EXTENDED2">/Watch;component/Font/#Eurostile LT ExtendedTwo</FontFamily>
+            <FontFamily x:Key="F_HYQIHEI_60S">/Watch;component/Font/#汉仪旗黑-60S</FontFamily>
+            <FontFamily x:Key="F_ROBOTOCONDENSED_REGULAR">/Watch;component/Font/#Roboto Condensed</FontFamily>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/DesignerItem.xaml" />
+                <ResourceDictionary Source="Style/ResizeRotateChrome.xaml" />
+                <ResourceDictionary Source="Style/SizeChrome.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

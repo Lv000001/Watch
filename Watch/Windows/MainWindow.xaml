@@ -1,0 +1,124 @@
+﻿<Window x:Class="Watch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Watch" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" MinHeight="600" MinWidth="1000"
+        Title="Watch" Height="600" Width="1000" Icon="/Watch;component/Images/deskclock.png">
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetType"
+                            ObjectType="{x:Type sys:Type}" x:Key="colorsTypeOdp">
+            <ObjectDataProvider.MethodParameters>
+                <sys:String>System.Windows.Media.Colors, PresentationCore,
+            Version=3.0.0.0, Culture=neutral,
+            PublicKeyToken=31bf3856ad364e35</sys:String>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}" 
+                            MethodName="GetProperties" x:Key="colorPropertiesOdp">
+        </ObjectDataProvider>
+        <local:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" MinWidth="200"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="313*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="528*"/>
+            </Grid.RowDefinitions>
+            <TabControl Grid.Row="1">
+
+                <TabItem Header="表盘元素">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="18*"/>
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="150"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="添加" ToolTip="添加新的元素" Margin="5" x:Name="btnAdd" Click="BtnAdd_Click"/>
+                            <Button Content="删除" ToolTip="删除选中的元素" Margin="5" x:Name="btnDelete" Click="BtnDelete_Click"/>
+                            <Button Content="↑" ToolTip="向顶层移动" Margin="5" x:Name="btnUp"  Click="BtnUp_Click"/>
+                            <Button Content="↓" ToolTip="向底层移动" Margin="5" x:Name="btnDown" Click="BtnDown_Click"/>
+                        </StackPanel>
+
+                        <DataGrid x:Name="gridElements"  Grid.Row="1"
+                                  local:DataGridShowRowIndexBehavior.ShowRowIndex="True"
+                                  CanUserSortColumns="False" AllowDrop="True" SelectionMode="Single" SelectionChanged="GridElements_SelectionChanged"  CanUserAddRows="False"  ItemsSource="{Binding}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="是否显示"  Binding="{Binding Path=DesignerControl.Visibility,Converter={StaticResource VisibilityToBoolConverter},Mode=TwoWay}"  />
+                                <DataGridTextColumn Header="标签" Binding="{Binding Path=HWElement.Label,Mode=OneWay}"  />
+                                <DataGridTextColumn  Header="类型" Binding="{Binding Path=HWElement.ClassName,Mode=OneWay}" />
+                                <DataGridTextColumn Header="用途" Binding="{Binding Path=HWElement.Description,Mode=OneWay}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <GridSplitter HorizontalAlignment="Stretch" Grid.Row="2" />
+                        <ScrollViewer Grid.Row="3">
+                            <Grid  x:Name="gridAttribute">
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="系统常量">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Content="保存" HorizontalAlignment="Right" Width="50" Margin="5" x:Name="btnRefresh" Click="BtnRefresh_Click"/>
+                        <DataGrid  Grid.Row="1" x:Name="grid" CanUserAddRows="False" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="数据名称"  Binding="{Binding Path=Name,Mode=OneWay}" />
+                                <DataGridTextColumn  Header="订阅类型"  Binding="{Binding Path=DataType,Mode=OneWay}"/>
+                                <DataGridTextColumn  Header="取值范围"  Binding="{Binding Path=Range,Mode=OneWay}"/>
+                                <DataGridTextColumn  Header="值"  Binding="{Binding Path=Value,Mode=TwoWay}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <StackPanel Orientation="Horizontal" >
+                <Button Content="打开" IsDefault="True" Width="50" Margin="5" x:Name="btnOpen" Click="BtnOpen_Click"/>
+                <Button Content="导出" Width="50" Margin="5" x:Name="btnExport" Click="BtnExport_Click" />
+            </StackPanel>
+
+        </Grid>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <Grid Grid.Column="2" x:Name="gridBg">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <RadioButton IsChecked="True" x:Name="radio454" Content="454*454" Margin="0 0 100 0" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked"/>
+            <RadioButton Content="390*390" Margin="100 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ComboBox Name="comboBox1" SelectionChanged="ComboBox1_SelectionChanged" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Margin="0 0 5 0"
+                  ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Margin="1 3" Height="10" Width="100"></Rectangle>
+                            <TextBlock Text="{Binding Name}" Margin="2 0"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+            <Canvas x:Name="canvasBg" Grid.Row="1" ClipToBounds="True">
+                <Image x:Name="imgBg" Source="/Watch;component/Images/run.png" Stretch="Fill" Width="1200" Height="1200" />
+                <Canvas x:Name="canvasMain"  Width="454" Height="454" ClipToBounds="True" />
+            </Canvas>
+        </Grid>
+    </Grid>
+</Window>
