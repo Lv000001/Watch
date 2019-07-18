@@ -223,7 +223,7 @@ namespace Watch.Common
                 if (item.HWElement is HWTextareaWithOneWildCard textareaWithOneWildCard)
                 {
                     xmlelem.SetAttribute("widget_type", "TEXTAREAWITHONEWILDCARD");
-                    XmlElement xmlChild = xml.CreateElement("TextareaWithOneWildCard");
+                    XmlElement xmlChild = xml.CreateElement("TextAreaWithOneWildCard");
                     SetXmlValue(textareaWithOneWildCard, xmlChild);
                     xmlelem.AppendChild(xmlChild);
                 }
@@ -231,7 +231,7 @@ namespace Watch.Common
                 if (item.HWElement is HWTextareaWithTwoWildCard textareaWithTwoWildCard)
                 {
                     xmlelem.SetAttribute("widget_type", "TEXTAREAWITHTWOWILDCARD");
-                    XmlElement xmlChild = xml.CreateElement("TextareaWithTwoWildCard");
+                    XmlElement xmlChild = xml.CreateElement("TextAreaWithTwoWildCard");
                     SetXmlValue(textareaWithTwoWildCard, xmlChild);
                     xmlelem.AppendChild(xmlChild);
                 }

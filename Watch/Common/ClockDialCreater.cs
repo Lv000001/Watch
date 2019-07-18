@@ -328,10 +328,13 @@ namespace Watch
                 Height = textureMapper.Drawable_height,
                 Style = (Style)Application.Current.Resources["DesignerItemStyle"]
             };
+            image.HorizontalAlignment = HorizontalAlignment.Left;
+            image.VerticalAlignment = VerticalAlignment.Top;
+            image.Margin = new Thickness((textureMapper.Drawable_width - textureMapper.Rotation_center_x * 2) / 2.0, (textureMapper.Drawable_height - textureMapper.Rotation_center_y * 2.0) / 2, 0, 0);
             control.Content = image;
             canvas.Children.Add(control);
             Canvas.SetLeft(control, textureMapper.Drawable_x);
-            Canvas.SetTop(control, textureMapper.Drawable_y );
+            Canvas.SetTop(control, textureMapper.Drawable_y);
             int value = ConstData.Datas[textureMapper.Data_type];
             double angle = textureMapper.Begin_arc + (textureMapper.End_arc - textureMapper.Begin_arc) * value / 100.0;
             SetRotateTransform(image, new Point(textureMapper.Rotation_center_x, textureMapper.Rotation_center_y), angle);

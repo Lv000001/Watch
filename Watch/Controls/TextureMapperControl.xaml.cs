@@ -87,6 +87,7 @@ namespace Watch.Controls
                 case "Width": textureMapper.Drawable_width = watchElement.Width; break;
                 case "Height": textureMapper.Drawable_height = watchElement.Height; break;
             }
+            RefreshControl();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -142,12 +143,9 @@ namespace Watch.Controls
             if (WatchElement.DesignerControl != null && WatchElement.DesignerControl.Content != null && WatchElement.DesignerControl.Content is Image image)
             {
                 HWTextureMapper textureMapper = WatchElement.HWElement as HWTextureMapper;
-                BitmapImage bitmapImage = ImageHelper.GetImage(textureMapper.Res_name);
-                image.Source = bitmapImage;
-                image.Width = bitmapImage.PixelWidth;
-                image.Height = bitmapImage.PixelHeight;
-                image.Stretch = Stretch.Fill;
-
+                image.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                image.VerticalAlignment = VerticalAlignment.Top;
+                image.Margin = new Thickness((textureMapper.Drawable_width - textureMapper.Rotation_center_x * 2) / 2.0, (textureMapper.Drawable_height - textureMapper.Rotation_center_y * 2.0) / 2,0,0);
                 int value = ConstData.Datas[textureMapper.Data_type];
                 double angle = textureMapper.Begin_arc + (textureMapper.End_arc - textureMapper.Begin_arc) * value / 100.0;
                 ClockDialCreater.SetRotateTransform(image, new Point(textureMapper.Rotation_center_x, textureMapper.Rotation_center_y), angle);

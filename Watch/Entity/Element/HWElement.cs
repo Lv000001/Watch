@@ -13,12 +13,12 @@ namespace Watch.Element
         /// <summary>
         /// 用于描述这个元素具体是什么元素
         /// </summary>
-        public string Label { set; get; }
+        public string Label { set; get; } = "";
 
         /// <summary>
         /// 描述控件是静态还是动态，运动手表中固定为static
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; set; } = "static";
 
         /// <summary>
         /// 类名

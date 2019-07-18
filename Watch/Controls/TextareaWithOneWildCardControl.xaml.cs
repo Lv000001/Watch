@@ -147,6 +147,7 @@ namespace Watch.Controls
                 case "Width": text.Drawable_width = watchElement.Width; break;
                 case "Height": text.Drawable_height = watchElement.Height; break;
             }
+            RefreshControl();
         }
 
         private void CmbFont_SelectionChanged(object sender, SelectionChangedEventArgs e)
